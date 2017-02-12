@@ -1,66 +1,62 @@
 #include "WarGame.h"
 
-using namespace std;
-
-void War::setUp() {
+void WarGame::setUp() {
 	stackDeck.shuffle();
 	dispatchCards();
 }
-void War::dispatchCards() {
-	while (stackDeck.getSize() > 0) {
-		if (firstPlayerDeck.getSize() <= secondPlayerDeck.getSize())
-			firstPlayerDeck.addCard(stackDeck.getTopCard());
-		else
+void WarGame::dispatchCards() {
+	while (!stackDeck.isEmpty()) {
+		if (firstPlayerDeck.isBiggerThan(secondPlayerDeck))
 			secondPlayerDeck.addCard(stackDeck.getTopCard());
-		stackDeck.remCard();
+		else
+			firstPlayerDeck.addCard(stackDeck.getTopCard());
+		stackDeck.removeCard();
 	}
 }
 
-void War::run() {
-	isRunning = true;
-	while (isRunning) {
+void WarGame::run() {
+	while (!isGameFinished())
 		launchRound();
-		isRunning = !isGameFinished();
-	}
+
 	displayResults();
 }
-void War::launchRound() {
+void WarGame::launchRound() {
 	Card firstPlayerTopCard = firstPlayerDeck.getTopCard();
 	Card secondPlayerTopCard = secondPlayerDeck.getTopCard();
 	displayCurrentRoundCards(firstPlayerTopCard, secondPlayerTopCard);
 
 	if (firstPlayerTopCard == secondPlayerTopCard)
-		battleRoundEnd(firstPlayerTopCard, secondPlayerTopCard);
+		launchBattleRoundEnd(firstPlayerTopCard, secondPlayerTopCard);
 	else if (firstPlayerTopCard > secondPlayerTopCard)
-		classicRoundEnd(firstPlayerTopCard, firstPlayerDeck, secondPlayerTopCard, secondPlayerDeck);
+		launchClassicRoundEnd(firstPlayerTopCard, firstPlayerDeck, secondPlayerTopCard, secondPlayerDeck);
 	else
-		classicRoundEnd(secondPlayerTopCard, secondPlayerDeck, firstPlayerTopCard, firstPlayerDeck);
+		launchClassicRoundEnd(secondPlayerTopCard, secondPlayerDeck, firstPlayerTopCard, firstPlayerDeck);
 }
 
-void War::battleRoundEnd(Card firstPlayerTopCard, Card secondPlayerTopCard) {
+void WarGame::launchBattleRoundEnd(const Card& firstPlayerTopCard, const Card& secondPlayerTopCard) {
 	stackDeck.addCard(firstPlayerTopCard);
 	stackDeck.addCard(secondPlayerTopCard);
 
-	firstPlayerDeck.remCard();
-	secondPlayerDeck.remCard();
+	firstPlayerDeck.removeCard();
+	secondPlayerDeck.removeCard();
 }
-void War::classicRoundEnd(Card & winnerTopCard, Deck & winnerDeck, Card & looserTopCard, Deck & looserDeck) {
-	stackDeck.emptyDeckInAnotherDeck(winnerDeck);
+void WarGame::launchClassicRoundEnd(const Card& winnerTopCard, Deck& winnerDeck, const Card& looserTopCard, Deck& looserDeck) {
+	stackDeck.emptyDeckInOtherDeck(winnerDeck);
 
 	winnerDeck.addCard(looserTopCard);
-	looserDeck.remCard();
+	looserDeck.removeCard();
 	winnerDeck.addCard(winnerTopCard);
-	winnerDeck.remCard();
+	winnerDeck.removeCard();
 }
 
-bool War::isGameFinished() {
+bool WarGame::isGameFinished() {
 	if (firstPlayerDeck.getSize() == 0 || secondPlayerDeck.getSize() == 0)
 		return true;
 	return false;
 }
-void War::displayResults() {
-	if (firstPlayerDeck.getSize() == 0)
-		cout << "Le joueur 2 à gagné !" << endl;
-	else
+void WarGame::displayResults() {
+	if (firstPlayerDeck.isBiggerThan(secondPlayerDeck))
 		cout << "Le joueur 1 à gagné !" << endl;
+	else
+		cout << "Le joueur 2 à gagné !" << endl;
 }

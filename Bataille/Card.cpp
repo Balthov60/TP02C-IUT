@@ -51,13 +51,13 @@ string Card::getAlphabeticalSymbol() const {
 	}
 }
 
-bool Card::operator==(const Card &card) const {
+bool Card::operator==(const Card& card) const {
 	if (value == card.value)
 		return true;
 
 	return false;
 }
-bool Card::operator>(const Card &card) const {
+bool Card::operator>(const Card& card) const {
 	if (value > card.value)
 		return true;
 

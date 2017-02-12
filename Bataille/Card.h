@@ -18,7 +18,7 @@ public:
 		this->value = value;
 		this->symbol = symbol;
 	}
-	Card(const Card &card) {
+	Card(const Card& card) {
 		this->value = card.value;
 		this->symbol = card.symbol;
 	}
@@ -33,14 +33,14 @@ public:
 		return value;
 	}
 
-	Card& operator=(const Card &card) {
+	Card& operator=(const Card& card) {
 		this->value = card.value;
 		this->symbol = card.symbol;
 
 		return *this;
 	}
-	bool operator==(const Card &card) const;
-	bool operator>(const Card &card) const;
-	friend ostream& operator<<(ostream& outStream, const Card &card);
+	bool operator==(const Card& card) const;
+	bool operator>(const Card& card) const;
+	friend ostream& operator<<(ostream& outStream, const Card& card);
 };
 

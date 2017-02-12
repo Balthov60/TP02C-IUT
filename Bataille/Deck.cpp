@@ -5,7 +5,7 @@
 
 using namespace std;
 
-Deck::Deck(const Deck &deck) {
+Deck::Deck(const Deck& deck) {
 	this->size = deck.size;
 	this->deckList = new Card*[size];
 
@@ -15,14 +15,12 @@ Deck::Deck(const Deck &deck) {
 
 void Deck::set32CardsSet() {
 	for (int i = 0; i < 4; i++) {
-		for (int j = 7; j < 15; j++) {
-			Card card(j, i);
-			addCard(card);
-		}
+		for (int j = 7; j < 15; j++)
+			addCard(Card(j, i));
 	}
 }
 
-void Deck::addCard(const Card & card) {
+void Deck::addCard(const Card&  card) {
 	Card ** temporaryPointer = new Card*[size + 1];
 
 	for (int i = 0; i < size; i++)
@@ -33,14 +31,13 @@ void Deck::addCard(const Card & card) {
 	size++;
 	deckList = temporaryPointer;
 }
-void Deck::remCard() {
-	Card ** temporaryPointer;
-	if (size == 0) {
+void Deck::removeCard() {
+	if (isEmpty()) {
 		cout << "ERROR : SIZE can't be < 0";
 		return;
 	}
-	temporaryPointer = new Card*[size - 1];
 
+	Card ** temporaryPointer = new Card*[size - 1];
 	for (int i = 0; i < size - 1; i++)
 		temporaryPointer[i] = new Card(*deckList[i + 1]);
 
@@ -53,20 +50,20 @@ void Deck::shuffle() {
 	for (int i = 0; i < size; i++)
 		swapTwoCardsByIndex(rand() % size, rand() % size);
 }
-void Deck::swapTwoCardsByIndex(int firstIndex, int secondIndex) {
+void Deck::swapTwoCardsByIndex(const int firstIndex, const int secondIndex) {
 	Card temp(*deckList[firstIndex]);
 	*deckList[firstIndex] = *deckList[secondIndex];
 	*deckList[secondIndex] = temp;
 }
 
-void Deck::emptyDeckInAnotherDeck(Deck & destinationDeck) {
-	while (size > 0) {
+void Deck::emptyDeckInOtherDeck(Deck&  destinationDeck) {
+	while (!isEmpty()) {
 		destinationDeck.addCard(getTopCard());
-		remCard();
+		removeCard();
 	}
 }
 
-Deck& Deck::operator=(const Deck &deck) {
+Deck& Deck::operator=(const Deck& deck) {
 	this->size = deck.size;
 	this->deckList = new Card*[size];
 
@@ -75,8 +72,7 @@ Deck& Deck::operator=(const Deck &deck) {
 
 	return *this;
 }
-
-ostream& operator<<(ostream& outStream, const Deck &deck) {
+ostream& operator<<(ostream& outStream, const Deck& deck) {
 	for (int i = 0; i < deck.size; i++)
 		outStream << *deck.deckList[i];
 

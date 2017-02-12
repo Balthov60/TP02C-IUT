@@ -3,25 +3,22 @@
 
 #include "Deck.h"
 
-using namespace std;
-
-class War
+class WarGame
 {
 private:
 	string title = "War Game";
-	bool isRunning = false;
 
 	Deck stackDeck;
 	Deck firstPlayerDeck;
 	Deck secondPlayerDeck;
 
 public:
-	War() {
-		stackDeck.set32CardsSet();
+	WarGame() { 
+		stackDeck.set32CardsSet(); 
 	}
-	War(string title) {
-		stackDeck.set32CardsSet();
+	WarGame(string title) {
 		this->title = title;
+		stackDeck.set32CardsSet();
 	}
 	
 	void setUp();
@@ -31,13 +28,13 @@ private:
 	void dispatchCards();
 
 	void launchRound();
-	void displayCurrentRoundCards(Card firstPlayerTopCard, Card secondPlayerTopCard) {
+	void displayCurrentRoundCards(const Card& firstPlayerTopCard, const Card& secondPlayerTopCard) const {
 		cout << "*****************************" << endl;
-		cout << firstPlayerTopCard << "VS" << endl << secondPlayerTopCard;
+		cout << firstPlayerTopCard << "VS\n" << secondPlayerTopCard;
 	}
-	void battleRoundEnd(Card firstPlayerTopCard, Card secondPlayerTopCard);
-	void classicRoundEnd(Card & winnerTopCard, Deck & winnerDeck, Card & looserTopCard, Deck & looserDeck);
+	void launchBattleRoundEnd(const Card& firstPlayerTopCard, const Card& secondPlayerTopCard);
+	void launchClassicRoundEnd(const Card& winnerTopCard, Deck& winnerDeck, const Card& looserTopCard, Deck& looserDeck);
+	
 	bool isGameFinished();
 	void displayResults();
 };
-
