@@ -1,4 +1,4 @@
-#include "WarGame.h"
+	#include "WarGame.h"
 
 void WarGame::setUp() {
 	stackDeck.shuffle();
@@ -16,15 +16,19 @@ void WarGame::dispatchCards() {
 
 void WarGame::run() {
 	while (!isGameFinished())
-		launchRound();
+		playRound();
 
 	displayResults();
 }
-void WarGame::launchRound() {
+void WarGame::playRound() {
 	Card firstPlayerTopCard = firstPlayerDeck.getTopCard();
 	Card secondPlayerTopCard = secondPlayerDeck.getTopCard();
 	displayCurrentRoundCards(firstPlayerTopCard, secondPlayerTopCard);
 
+	endRound(firstPlayerTopCard, secondPlayerTopCard);
+}
+
+void WarGame::endRound(const Card& firstPlayerTopCard, const Card& secondPlayerTopCard) {
 	if (firstPlayerTopCard == secondPlayerTopCard)
 		launchBattleRoundEnd(firstPlayerTopCard, secondPlayerTopCard);
 	else if (firstPlayerTopCard > secondPlayerTopCard)
@@ -32,7 +36,6 @@ void WarGame::launchRound() {
 	else
 		launchClassicRoundEnd(secondPlayerTopCard, secondPlayerDeck, firstPlayerTopCard, firstPlayerDeck);
 }
-
 void WarGame::launchBattleRoundEnd(const Card& firstPlayerTopCard, const Card& secondPlayerTopCard) {
 	stackDeck.addCard(firstPlayerTopCard);
 	stackDeck.addCard(secondPlayerTopCard);

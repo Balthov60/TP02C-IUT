@@ -27,11 +27,13 @@ public:
 private:
 	void dispatchCards();
 
-	void launchRound();
+	void playRound();
 	void displayCurrentRoundCards(const Card& firstPlayerTopCard, const Card& secondPlayerTopCard) const {
 		cout << "*****************************" << endl;
 		cout << firstPlayerTopCard << "VS\n" << secondPlayerTopCard;
 	}
+
+	void endRound(const Card& firstPlayerTopCard, const Card& secondPlayerTopCard);
 	void launchBattleRoundEnd(const Card& firstPlayerTopCard, const Card& secondPlayerTopCard);
 	void launchClassicRoundEnd(const Card& winnerTopCard, Deck& winnerDeck, const Card& looserTopCard, Deck& looserDeck);
 	
