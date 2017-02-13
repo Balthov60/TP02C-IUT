@@ -1,7 +1,8 @@
-﻿  WarGame.cpp
+﻿  Deck.cpp
   Generating Code...
 d:\repositories\tpbataille\bataille\deck.h(21): warning C4715: 'Deck::getTopCard': not all control paths return a value
   Skipping... (no relevant changes detected)
+  WarGame.cpp
   Main.cpp
   Bataille.vcxproj -> D:\Repositories\TPBataille\Debug\Bataille.exe
   Bataille.vcxproj -> D:\Repositories\TPBataille\Debug\Bataille.pdb (Full PDB)

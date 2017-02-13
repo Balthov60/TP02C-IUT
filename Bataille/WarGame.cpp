@@ -7,10 +7,10 @@ void WarGame::setUp() {
 void WarGame::dispatchCards() {
 	while (!stackDeck.isEmpty()) {
 		if (firstPlayerDeck.isBiggerThan(secondPlayerDeck))
-			secondPlayerDeck.addCard(stackDeck.getTopCard());
+			secondPlayerDeck.resizeAndAddCard(stackDeck.getTopCard());
 		else
-			firstPlayerDeck.addCard(stackDeck.getTopCard());
-		stackDeck.removeCard();
+			firstPlayerDeck.resizeAndAddCard(stackDeck.getTopCard());
+		stackDeck.resizeAndRemoveCard();
 	}
 }
 
@@ -37,19 +37,19 @@ void WarGame::endRound(const Card& firstPlayerTopCard, const Card& secondPlayerT
 		launchClassicRoundEnd(secondPlayerTopCard, secondPlayerDeck, firstPlayerTopCard, firstPlayerDeck);
 }
 void WarGame::launchBattleRoundEnd(const Card& firstPlayerTopCard, const Card& secondPlayerTopCard) {
-	stackDeck.addCard(firstPlayerTopCard);
-	stackDeck.addCard(secondPlayerTopCard);
+	stackDeck.resizeAndAddCard(firstPlayerTopCard);
+	stackDeck.resizeAndAddCard(secondPlayerTopCard);
 
-	firstPlayerDeck.removeCard();
-	secondPlayerDeck.removeCard();
+	firstPlayerDeck.resizeAndRemoveCard();
+	secondPlayerDeck.resizeAndRemoveCard();
 }
 void WarGame::launchClassicRoundEnd(const Card& winnerTopCard, Deck& winnerDeck, const Card& looserTopCard, Deck& looserDeck) {
 	stackDeck.emptyDeckInOtherDeck(winnerDeck);
 
-	winnerDeck.addCard(looserTopCard);
-	looserDeck.removeCard();
-	winnerDeck.addCard(winnerTopCard);
-	winnerDeck.removeCard();
+	winnerDeck.resizeAndAddCard(looserTopCard);
+	looserDeck.resizeAndRemoveCard();
+	winnerDeck.resizeAndAddCard(winnerTopCard);
+	winnerDeck.resizeAndRemoveCard();
 }
 
 bool WarGame::isGameFinished() {

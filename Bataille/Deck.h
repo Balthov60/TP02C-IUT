@@ -20,13 +20,16 @@ public:
 		cout << "ERROR : Deck Empty return an Empty card";
 	}
 
-	void addCard(const Card& card);
-	void removeCard();
+	void resizeAndAddCard(const Card& card);
+	void resizeAndRemoveCard();
+	Card ** Deck::resizeFor(int newSize);
 
 	void set32CardsSet();
+	void set64CardsSet();
+	void emptyDeckInOtherDeck(Deck& deck);
+
 	void shuffle();
 	void swapTwoCardsByIndex(const int firstIndex, const int secondIndex);
-	void emptyDeckInOtherDeck(Deck& deck);
 
 	bool isBiggerThan(const Deck& otherDeck) const {
 		return (getSize() > otherDeck.getSize());
