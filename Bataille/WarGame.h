@@ -37,6 +37,8 @@ private:
 	void launchBattleRoundEnd(const Card& firstPlayerTopCard, const Card& secondPlayerTopCard);
 	void launchClassicRoundEnd(const Card& winnerTopCard, Deck& winnerDeck, const Card& looserTopCard, Deck& looserDeck);
 	
-	bool isGameFinished();
+	bool isGameFinished() {
+		return (firstPlayerDeck.getSize() == 0 || secondPlayerDeck.getSize() == 0);
+	}
 	void displayResults();
 };

@@ -1,4 +1,4 @@
-	#include "WarGame.h"
+#include "WarGame.h"
 
 void WarGame::setUp() {
 	stackDeck.shuffle();
@@ -7,10 +7,10 @@ void WarGame::setUp() {
 void WarGame::dispatchCards() {
 	while (!stackDeck.isEmpty()) {
 		if (firstPlayerDeck.isBiggerThan(secondPlayerDeck))
-			secondPlayerDeck.resizeAndAddCard(stackDeck.getTopCard());
+			secondPlayerDeck.addCard(stackDeck.getTopCard());
 		else
-			firstPlayerDeck.resizeAndAddCard(stackDeck.getTopCard());
-		stackDeck.resizeAndRemoveCard();
+			firstPlayerDeck.addCard(stackDeck.getTopCard());
+		stackDeck.removeCard();
 	}
 }
 
@@ -23,8 +23,8 @@ void WarGame::run() {
 void WarGame::playRound() {
 	Card firstPlayerTopCard = firstPlayerDeck.getTopCard();
 	Card secondPlayerTopCard = secondPlayerDeck.getTopCard();
-	displayCurrentRoundCards(firstPlayerTopCard, secondPlayerTopCard);
 
+	displayCurrentRoundCards(firstPlayerTopCard, secondPlayerTopCard);
 	endRound(firstPlayerTopCard, secondPlayerTopCard);
 }
 
@@ -37,26 +37,21 @@ void WarGame::endRound(const Card& firstPlayerTopCard, const Card& secondPlayerT
 		launchClassicRoundEnd(secondPlayerTopCard, secondPlayerDeck, firstPlayerTopCard, firstPlayerDeck);
 }
 void WarGame::launchBattleRoundEnd(const Card& firstPlayerTopCard, const Card& secondPlayerTopCard) {
-	stackDeck.resizeAndAddCard(firstPlayerTopCard);
-	stackDeck.resizeAndAddCard(secondPlayerTopCard);
+	stackDeck.addCard(firstPlayerTopCard);
+	stackDeck.addCard(secondPlayerTopCard);
 
-	firstPlayerDeck.resizeAndRemoveCard();
-	secondPlayerDeck.resizeAndRemoveCard();
+	firstPlayerDeck.removeCard();
+	secondPlayerDeck.removeCard();
 }
 void WarGame::launchClassicRoundEnd(const Card& winnerTopCard, Deck& winnerDeck, const Card& looserTopCard, Deck& looserDeck) {
 	stackDeck.emptyDeckInOtherDeck(winnerDeck);
 
-	winnerDeck.resizeAndAddCard(looserTopCard);
-	looserDeck.resizeAndRemoveCard();
-	winnerDeck.resizeAndAddCard(winnerTopCard);
-	winnerDeck.resizeAndRemoveCard();
+	winnerDeck.addCard(looserTopCard);
+	looserDeck.removeCard();
+	winnerDeck.addCard(winnerTopCard);
+	winnerDeck.removeCard();
 }
 
-bool WarGame::isGameFinished() {
-	if (firstPlayerDeck.getSize() == 0 || secondPlayerDeck.getSize() == 0)
-		return true;
-	return false;
-}
 void WarGame::displayResults() {
 	if (firstPlayerDeck.isBiggerThan(secondPlayerDeck))
 		cout << "Le joueur 1 à gagné !" << endl;

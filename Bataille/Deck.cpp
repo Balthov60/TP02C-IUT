@@ -6,6 +6,10 @@
 using namespace std;
 
 Deck::Deck(const Deck& deck) {
+	this->createByCopyOf(deck);
+}
+
+void Deck::createByCopyOf(const Deck& deck) {
 	this->size = deck.size;
 	this->deckList = new Card*[size];
 
@@ -16,21 +20,17 @@ Deck::Deck(const Deck& deck) {
 void Deck::set32CardsSet() {
 	for (int i = 0; i < 4; i++) {
 		for (int j = 7; j < 15; j++) 
-			resizeAndAddCard(Card(j, i));
+			addCard(Card(j, i));
 	}
 }
 void Deck::set64CardsSet() {
 	for (int i = 0; i < 4; i++) {
 		for (int j = 2; j < 15; j++)
-			resizeAndAddCard(Card(j, i));
+			addCard(Card(j, i));
 	}
 }
 
-Card ** Deck::resizeFor(int newSize) {
-	return new Card*[newSize];
-}
-
-void Deck::resizeAndAddCard(const Card&  card) {
+void Deck::addCard(const Card&  card) {
 	Card ** temporaryPointer = resizeFor(size + 1);
 
 	for (int i = 0; i < size; i++)
@@ -41,19 +41,23 @@ void Deck::resizeAndAddCard(const Card&  card) {
 	size++;
 	deckList = temporaryPointer;
 }
-void Deck::resizeAndRemoveCard() {
+void Deck::removeCard() {
 	if (isEmpty()) {
 		cout << "ERROR : SIZE can't be < 0";
 		return;
 	}
-
 	Card ** temporaryPointer = resizeFor(size - 1);
+
 	for (int i = 0; i < size - 1; i++)
 		temporaryPointer[i] = new Card(*deckList[i + 1]);
 
 	freeDeckMemory();
 	size--;
 	deckList = temporaryPointer;
+}
+
+Card ** Deck::resizeFor(int newSize) {
+	return new Card*[newSize];
 }
 
 void Deck::shuffle() {
@@ -68,17 +72,13 @@ void Deck::swapTwoCardsByIndex(const int firstIndex, const int secondIndex) {
 
 void Deck::emptyDeckInOtherDeck(Deck&  destinationDeck) {
 	while (!isEmpty()) {
-		destinationDeck.resizeAndAddCard(getTopCard());
-		resizeAndRemoveCard();
+		destinationDeck.addCard(getTopCard());
+		removeCard();
 	}
 }
 
 Deck& Deck::operator=(const Deck& deck) {
-	this->size = deck.size;
-	this->deckList = new Card*[size];
-
-	for (int i = 0; i < size; i++)
-		deckList[i] = new Card(*deck.deckList[i]);
+	this->createByCopyOf(deck);
 
 	return *this;
 }

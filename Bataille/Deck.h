@@ -20,8 +20,11 @@ public:
 		cout << "ERROR : Deck Empty return an Empty card";
 	}
 
-	void resizeAndAddCard(const Card& card);
-	void resizeAndRemoveCard();
+	void Deck::createByCopyOf(const Deck& deck);
+
+	// DeckList is resize each time we add or remove a card.
+	void addCard(const Card& card);
+	void removeCard();
 	Card ** Deck::resizeFor(int newSize);
 
 	void set32CardsSet();
