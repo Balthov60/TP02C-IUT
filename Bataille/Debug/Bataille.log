@@ -1,9 +1,8 @@
 ﻿  Main.cpp
-d:\repositories\tpbataille\bataille\main.cpp(11): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  Deck.cpp
+d:\repositories\tpbataille\bataille\main.cpp(7): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   Generating Code...
-d:\repositories\tpbataille\bataille\deck.h(21): warning C4715: 'Deck::getTopCard': not all control paths return a value
-  Skipping... (no relevant changes detected)
+  Compiling...
   WarGame.cpp
+  Generating Code...
   Bataille.vcxproj -> D:\Repositories\TPBataille\Debug\Bataille.exe
   Bataille.vcxproj -> D:\Repositories\TPBataille\Debug\Bataille.pdb (Full PDB)

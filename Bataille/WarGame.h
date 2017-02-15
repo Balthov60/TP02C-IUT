@@ -1,24 +1,27 @@
 #pragma once
 #include <string>
 
-#include "Deck.h"
+#include "GameEngine.h"
+#include "Deck32.h"
 
-class WarGame
+class WarGame :
+	public GameEngine
 {
 private:
-	string title = "War Game";
-
-	Deck stackDeck;
-	Deck firstPlayerDeck;
-	Deck secondPlayerDeck;
+	Deck * stackDeck;
+	Deck * firstPlayerDeck;
+	Deck * secondPlayerDeck;
 
 public:
 	WarGame() { 
-		stackDeck.set32CardsSet(); 
+		stackDeck = new Deck32();
+		firstPlayerDeck = new Deck32();
+		secondPlayerDeck = new Deck32();
 	}
-	WarGame(string title) {
-		this->title = title;
-		stackDeck.set32CardsSet();
+	WarGame(string title) : GameEngine(title) {
+		stackDeck = new Deck32();
+		firstPlayerDeck = new Deck32();
+		secondPlayerDeck = new Deck32();
 	}
 	
 	void setUp();
@@ -38,7 +41,14 @@ private:
 	void launchClassicRoundEnd(const Card& winnerTopCard, Deck& winnerDeck, const Card& looserTopCard, Deck& looserDeck);
 	
 	bool isGameFinished() {
-		return (firstPlayerDeck.getSize() == 0 || secondPlayerDeck.getSize() == 0);
+		return (firstPlayerDeck->getSize() == 0 || secondPlayerDeck->getSize() == 0);
 	}
 	void displayResults();
+
+public:
+	~WarGame() {
+		delete stackDeck;
+		delete firstPlayerDeck;
+		delete secondPlayerDeck;
+	}
 };

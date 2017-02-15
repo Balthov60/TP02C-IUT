@@ -17,19 +17,6 @@ void Deck::createByCopyOf(const Deck& deck) {
 		deckList[i] = new Card(*deck.deckList[i]);
 }
 
-void Deck::set32CardsSet() {
-	for (int i = 0; i < 4; i++) {
-		for (int j = 7; j < 15; j++) 
-			addCard(Card(j, i));
-	}
-}
-void Deck::set64CardsSet() {
-	for (int i = 0; i < 4; i++) {
-		for (int j = 2; j < 15; j++)
-			addCard(Card(j, i));
-	}
-}
-
 void Deck::addCard(const Card&  card) {
 	Card ** temporaryPointer = resizeFor(size + 1);
 

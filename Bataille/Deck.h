@@ -17,7 +17,7 @@ public:
 	Card getTopCard() const {
 		if (size > 0)
 			return *deckList[0];
-		cout << "ERROR : Deck Empty return an Empty card";
+		cerr << "ERROR : Deck Empty return an Empty card"; exit(0);
 	}
 
 	void Deck::createByCopyOf(const Deck& deck);
@@ -27,8 +27,6 @@ public:
 	void removeCard();
 	Card ** Deck::resizeFor(int newSize);
 
-	void set32CardsSet();
-	void set64CardsSet();
 	void emptyDeckInOtherDeck(Deck& deck);
 
 	void shuffle();
