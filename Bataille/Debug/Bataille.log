@@ -1,8 +1,18 @@
 ﻿  Main.cpp
+d:\repositories\tpbataille\bataille\wargame.h(17): error C2243: 'type cast': conversion from 'Deck32 *' to 'Deck *' exists, but is inaccessible
+d:\repositories\tpbataille\bataille\wargame.h(18): error C2243: 'type cast': conversion from 'Deck32 *' to 'Deck *' exists, but is inaccessible
+d:\repositories\tpbataille\bataille\wargame.h(19): error C2243: 'type cast': conversion from 'Deck32 *' to 'Deck *' exists, but is inaccessible
+d:\repositories\tpbataille\bataille\wargame.h(22): error C2243: 'type cast': conversion from 'Deck32 *' to 'Deck *' exists, but is inaccessible
+d:\repositories\tpbataille\bataille\wargame.h(23): error C2243: 'type cast': conversion from 'Deck32 *' to 'Deck *' exists, but is inaccessible
+d:\repositories\tpbataille\bataille\wargame.h(24): error C2243: 'type cast': conversion from 'Deck32 *' to 'Deck *' exists, but is inaccessible
 d:\repositories\tpbataille\bataille\main.cpp(7): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   Generating Code...
   Compiling...
   WarGame.cpp
+d:\repositories\tpbataille\bataille\wargame.h(17): error C2243: 'type cast': conversion from 'Deck32 *' to 'Deck *' exists, but is inaccessible
+d:\repositories\tpbataille\bataille\wargame.h(18): error C2243: 'type cast': conversion from 'Deck32 *' to 'Deck *' exists, but is inaccessible
+d:\repositories\tpbataille\bataille\wargame.h(19): error C2243: 'type cast': conversion from 'Deck32 *' to 'Deck *' exists, but is inaccessible
+d:\repositories\tpbataille\bataille\wargame.h(22): error C2243: 'type cast': conversion from 'Deck32 *' to 'Deck *' exists, but is inaccessible
+d:\repositories\tpbataille\bataille\wargame.h(23): error C2243: 'type cast': conversion from 'Deck32 *' to 'Deck *' exists, but is inaccessible
+d:\repositories\tpbataille\bataille\wargame.h(24): error C2243: 'type cast': conversion from 'Deck32 *' to 'Deck *' exists, but is inaccessible
   Generating Code...
-  Bataille.vcxproj -> D:\Repositories\TPBataille\Debug\Bataille.exe
-  Bataille.vcxproj -> D:\Repositories\TPBataille\Debug\Bataille.pdb (Full PDB)

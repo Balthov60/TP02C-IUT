@@ -3,7 +3,7 @@
 
 class Deck 
 {
-private:
+protected:
 	int size = 0;
 	Card ** deckList;
 
