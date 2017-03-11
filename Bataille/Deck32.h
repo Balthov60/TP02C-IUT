@@ -1,5 +1,8 @@
 #pragma once
+
 #include "Deck.h"
+
+
 class Deck32 :
 	public Deck
 {

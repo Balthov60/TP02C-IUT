@@ -151,13 +151,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="WarGame.cpp" />
-    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Card.cpp" />
     <ClCompile Include="Deck.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Deck32.h" />
-    <ClInclude Include="Deck64.h" />
+    <ClInclude Include="Deck52.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="WarGame.h" />
     <ClInclude Include="Card.h" />

@@ -1,8 +1,11 @@
 #pragma once
+
 #include <string>
 
 #include "GameEngine.h"
 #include "Deck32.h"
+#include "Deck52.h"
+
 
 class WarGame :
 	public GameEngine
@@ -15,13 +18,13 @@ private:
 public:
 	WarGame() { 
 		stackDeck = new Deck32();
-		firstPlayerDeck = new Deck32();
-		secondPlayerDeck = new Deck32();
+		firstPlayerDeck = new Deck();
+		secondPlayerDeck = new Deck();
 	}
 	WarGame(string title) : GameEngine(title) {
 		stackDeck = new Deck32();
-		firstPlayerDeck = new Deck32();
-		secondPlayerDeck = new Deck32();
+		firstPlayerDeck = new Deck();
+		secondPlayerDeck = new Deck();
 	}
 	
 	void setUp();

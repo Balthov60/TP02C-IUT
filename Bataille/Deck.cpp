@@ -1,9 +1,5 @@
-#include <random>
-#include <ctime>
-
 #include "Deck.h"
 
-using namespace std;
 
 Deck::Deck(const Deck& deck) {
 	this->createByCopyOf(deck);

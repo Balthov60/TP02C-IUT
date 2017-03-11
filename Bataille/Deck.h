@@ -1,14 +1,16 @@
 #pragma once
+
 #include "Card.h"
+
 
 class Deck 
 {
 protected:
-	int size = 0;
+	int size;
 	Card ** deckList;
 
 public:
-	Deck() {/** Default Constructor **/}
+	Deck() : size(0) {/** Default Constructor **/}
 	Deck(const Deck& deck);
 
 	int getSize() const {

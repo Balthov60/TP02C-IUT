@@ -1,5 +1,6 @@
 #include "WarGame.h"
 
+
 void WarGame::setUp() {
 	stackDeck->shuffle();
 	dispatchCards();

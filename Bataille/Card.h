@@ -1,4 +1,5 @@
 #pragma once
+
 #include <iostream>
 #include <string>
 
@@ -6,6 +7,7 @@ using namespace std;
 
 enum SYMBOLS { PIKES, TILES, HEARTS, CLOVERS };
 enum PICTURE_CARDS { JACK = 11, QUEEN = 12, KING = 13, AS = 14 };
+
 
 class Card
 {

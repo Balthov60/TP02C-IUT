@@ -1,6 +1,5 @@
 #include "Card.h"
 
-using namespace std;
 
 ostream& operator<<(ostream& outStream, const Card& card) {
 	outStream << "Card : ";
